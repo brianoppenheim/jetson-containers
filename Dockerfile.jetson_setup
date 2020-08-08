@@ -37,6 +37,11 @@ RUN mkdir /home/paradisolab && \
     cd /home/paradisolab/visual-prosthesis && \
     git clone https://github.com/brianoppenheim/jetson-containers.git
 
-
-RUN echo $PWD && \
-    sh /home/paradisolab/visual-prosthesis/jetson-containers/scripts/install_opencv_411.sh
+RUN  apt-get update -y && \
+     apt-get upgrade -y && \
+     apt-get dist-upgrade -y && \
+     apt-get -y autoremove && \
+     apt-get clean
+RUN apt-get install unzip && \ #Docker need to install unzip/curl first
+    apt-get install curl
+RUN sh /home/paradisolab/visual-prosthesis/jetson-containers/scripts/install_opencv_411.sh
